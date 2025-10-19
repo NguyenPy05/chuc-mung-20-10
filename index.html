@@ -1,159 +1,185 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>💌 Gửi Em Ngày 20/10 💖</title>
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      background: radial-gradient(circle at top, #ffeef3, #ffd9e0, #fff0f5);
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: 'Georgia', serif;
-      position: relative;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💌 Gửi Em Ngày 20/10 💖</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background: radial-gradient(circle at top, #fff6fa, #ffdce3, #ffeef2);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Georgia', serif;
+    position: relative;
+  }
 
-    /* ✉️ Phong bì thật */
-    .envelope {
-      position: relative;
-      width: 280px;
-      height: 180px;
-      background: #fff0f5;
-      border: 2px solid #ffb6c1;
-      border-radius: 8px;
-      box-shadow: 0 10px 30px rgba(255, 182, 193, 0.5);
-      cursor: pointer;
-      perspective: 800px;
-      transition: transform 0.8s ease-in-out;
-      z-index: 10;
-      background-image: linear-gradient(145deg, #fff, #ffe6eb);
-    }
+  /* ✉️ Phong bì */
+  .envelope {
+    position: relative;
+    width: 280px;
+    height: 180px;
+    background: #fff0f5;
+    border: 2px solid #ffb6c1;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(255, 182, 193, 0.5);
+    cursor: pointer;
+    perspective: 800px;
+    transition: transform 0.8s ease-in-out;
+    z-index: 10;
+    background-image: linear-gradient(145deg, #fff, #ffe6eb);
+  }
 
-    .flap {
-      position: absolute;
-      width: 100%;
-      height: 50%;
-      background: linear-gradient(145deg, #ffb6c1, #ff9eb0);
-      top: 0;
-      left: 0;
-      clip-path: polygon(0 0, 50% 100%, 100% 0);
-      transform-origin: top;
-      transition: transform 1.2s ease;
-      box-shadow: inset 0 -3px 5px rgba(0,0,0,0.05);
-    }
+  .flap {
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(145deg, #ffb6c1, #ff9eb0);
+    top: 0;
+    left: 0;
+    clip-path: polygon(0 0, 50% 100%, 100% 0);
+    transform-origin: top;
+    transition: transform 1.2s ease;
+  }
 
-    .letter {
-      position: absolute;
-      top: 40px;
-      left: 15px;
-      width: 250px;
-      height: 130px;
-      background: #fffdf8;
-      border: 1px solid #f4c2c2;
-      border-radius: 6px;
-      padding: 15px;
-      box-shadow: 0 0 15px rgba(255,182,193,0.3);
-      transform: translateY(0);
-      opacity: 0;
-      transition: all 1s ease;
-      overflow: hidden;
-    }
+  .envelope.open .flap {
+    transform: rotateX(180deg);
+  }
 
-    .envelope.open .flap {
-      transform: rotateX(180deg);
-    }
+  .envelope.fade-out {
+    opacity: 0;
+    transform: scale(0.7);
+    transition: all 1s ease-in-out;
+  }
 
-    .envelope.open .letter {
-      top: -240px;
-      opacity: 1;
-      animation: fadeIn 2s ease forwards;
-    }
+  /* 💌 Lá thư tay */
+  .real-letter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 320px;
+    height: 400px;
+    background: #fffdf7;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(255,182,193,0.4);
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0;
+    transition: all 1.2s ease;
+    padding: 25px;
+    line-height: 1.6em;
+    color: #663046;
+    background-image: linear-gradient(180deg, #fffdf7 0%, #fff8f2 100%);
+    font-family: 'Dancing Script', cursive;
+    background-size: 100% 200%;
+    background-repeat: no-repeat;
+  }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+  .real-letter.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    animation: paperRise 1.5s ease forwards;
+  }
 
-    /* 💓 Tim nền */
-    .heart-center {
-      position: absolute;
-      width: 90px;
-      height: 90px;
-      top: 60%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: #ff4d88;
-      clip-path: path("M10,30 A20,20 0,0,1 50,30 A20,20 0,0,1 90,30 Q90,60 50,90 Q10,60 10,30 Z");
-      animation: heartbeat 1.8s infinite ease-in-out;
-      opacity: 0.6;
-      filter: drop-shadow(0 0 15px #ff8fa3);
-      z-index: 0;
-    }
+  @keyframes paperRise {
+    from { transform: translate(-50%, -30%) scale(0.8); opacity: 0; }
+    to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  }
 
-    @keyframes heartbeat {
-      0%, 100% { transform: translate(-50%, -50%) scale(1); }
-      25% { transform: translate(-50%, -50%) scale(1.2); }
-      50% { transform: translate(-50%, -50%) scale(1); }
-      75% { transform: translate(-50%, -50%) scale(1.1); }
-    }
+  .typed {
+    font-size: 18px;
+    color: #884d63;
+    white-space: pre-line;
+    border-right: 2px solid #ff99b9;
+    overflow: hidden;
+    animation: typing 7s steps(80) 1s 1 normal both, blink 0.8s step-end infinite alternate;
+  }
 
-    /* 🌸 Ảnh repo xoay quanh */
-    .orbit-img {
-      position: absolute;
-      width: 100px;
-      height: 100px;
-      border-radius: 15px;
-      object-fit: cover;
-      opacity: 0;
-      animation: fadeInRotate 25s linear infinite;
-      box-shadow: 0 0 20px rgba(255,182,193,0.4);
-      transition: opacity 2s;
-      pointer-events: auto;
-    }
+  @keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+  }
 
-    @keyframes fadeInRotate {
-      from { transform: rotate(0deg) translateX(250px) rotate(0deg); opacity: 1; }
-      to { transform: rotate(360deg) translateX(250px) rotate(-360deg); opacity: 1; }
-    }
+  @keyframes blink {
+    from, to { border-color: transparent; }
+    50% { border-color: #ff99b9; }
+  }
 
-    /* ✍️ Chữ viết tay */
-    .typed {
-      font-size: 16px;
-      color: #e75480;
-      line-height: 1.5em;
-      white-space: pre-line;
-      overflow: hidden;
-      border-right: 2px solid #e75480;
-      animation: typing 6s steps(60) 1s 1 normal both, blink 0.8s step-end infinite alternate;
-    }
+  /* 💗 Tim trung tâm (thật hơn) */
+  .heart-center {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 110px;
+    z-index: 0;
+    animation: realBeat 1.8s infinite ease-in-out;
+  }
 
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
-    }
+  .heart-center svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 20px rgba(255,100,130,0.5));
+  }
 
-    @keyframes blink {
-      from, to { border-color: transparent }
-      50% { border-color: #e75480; }
-    }
+  @keyframes realBeat {
+    0% { transform: translate(-50%, -50%) scale(1); }
+    25% { transform: translate(-50%, -50%) scale(1.2); }
+    50% { transform: translate(-50%, -50%) scale(1); }
+    75% { transform: translate(-50%, -50%) scale(1.15); }
+    100% { transform: translate(-50%, -50%) scale(1); }
+  }
 
-    audio { display: none; }
-  </style>
+  /* 🌸 Ảnh repo xoay quanh */
+  .orbit-img {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    border-radius: 15px;
+    object-fit: cover;
+    opacity: 0;
+    animation: orbit 40s linear infinite;
+    box-shadow: 0 0 20px rgba(255,182,193,0.4);
+    transition: opacity 2s;
+  }
+
+  @keyframes orbit {
+    from { transform: rotate(0deg) translateX(280px) rotate(0deg); }
+    to { transform: rotate(360deg) translateX(280px) rotate(-360deg); }
+  }
+
+  audio { display: none; }
+</style>
 </head>
 <body>
 
+  <!-- ✉️ Phong bì -->
   <div class="envelope" id="envelope">
     <div class="flap"></div>
-    <div class="letter">
-      <div id="message" class="typed"></div>
-    </div>
   </div>
 
-  <div class="heart-center"></div>
+  <!-- 💌 Lá thư -->
+  <div class="real-letter" id="realLetter">
+    <div id="message" class="typed"></div>
+  </div>
+
+  <!-- ❤️ Tim thật -->
+  <div class="heart-center">
+    <svg viewBox="0 0 100 90">
+      <defs>
+        <radialGradient id="grad" cx="50%" cy="30%" r="70%">
+          <stop offset="0%" stop-color="#ff7aa2" />
+          <stop offset="70%" stop-color="#ff3366" />
+          <stop offset="100%" stop-color="#c2185b" />
+        </radialGradient>
+      </defs>
+      <path d="M10,30 A20,20 0,0,1 50,30 A20,20 0,0,1 90,30 Q90,60 50,90 Q10,60 10,30 Z"
+        fill="url(#grad)" />
+    </svg>
+  </div>
 
   <audio id="bg-music">
     <source src="https://cdn.pixabay.com/download/audio/2023/03/02/audio_bf7fdd82b1.mp3?filename=romantic-piano-145990.mp3" type="audio/mpeg">
@@ -161,6 +187,7 @@
 
   <script>
     const envelope = document.getElementById("envelope");
+    const letter = document.getElementById("realLetter");
     const message = document.getElementById("message");
     const music = document.getElementById("bg-music");
 
@@ -181,15 +208,19 @@ Mong em sẽ luôn mỉm cười thật nhiều nhé 🌸
     ];
 
     envelope.addEventListener("click", () => {
-      if (!envelope.classList.contains("open")) {
-        envelope.classList.add("open");
-        music.play();
+      envelope.classList.add("open");
+      setTimeout(() => {
+        envelope.classList.add("fade-out");
+      }, 1200);
+      setTimeout(() => {
+        envelope.style.display = "none";
         showLetter();
-        createOrbitImages();
-      }
+      }, 2200);
     });
 
     function showLetter() {
+      letter.classList.add("show");
+      music.play();
       let i = 0;
       const speed = 40;
       function typeWriter() {
@@ -200,6 +231,7 @@ Mong em sẽ luôn mỉm cười thật nhiều nhé 🌸
         }
       }
       setTimeout(typeWriter, 1200);
+      createOrbitImages();
     }
 
     function createOrbitImages() {
@@ -209,7 +241,7 @@ Mong em sẽ luôn mỉm cười thật nhiều nhé 🌸
         img.classList.add("orbit-img");
         img.style.animationDelay = `${index * 5}s`;
         document.body.appendChild(img);
-        setTimeout(() => img.style.opacity = 1, 1000 * index);
+        setTimeout(() => img.style.opacity = 1, 1500 * index);
       });
     }
   </script>
