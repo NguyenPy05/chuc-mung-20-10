@@ -8,59 +8,59 @@
     body {
       margin: 0;
       height: 100vh;
-      background: radial-gradient(circle at top, rgba(255,192,203,0.5), rgba(255,182,193,0.2), rgba(255,240,245,0.3));
+      background: radial-gradient(circle at top, #ffeef3, #ffd9e0, #fff0f5);
       overflow: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Georgia', serif;
+      position: relative;
     }
 
-    /* 🌸 Phong bì */
+    /* ✉️ Phong bì thật */
     .envelope {
       position: relative;
-      width: 260px;
-      height: 160px;
-      background: linear-gradient(145deg, #ffc1cc, #ff99b7);
-      border-radius: 10px;
-      box-shadow: 0 0 30px rgba(255,182,193,0.8);
+      width: 280px;
+      height: 180px;
+      background: #fff0f5;
+      border: 2px solid #ffb6c1;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(255, 182, 193, 0.5);
       cursor: pointer;
-      transform-style: preserve-3d;
-      transition: transform 1s ease-in-out;
+      perspective: 800px;
+      transition: transform 0.8s ease-in-out;
       z-index: 10;
+      background-image: linear-gradient(145deg, #fff, #ffe6eb);
     }
 
     .flap {
       position: absolute;
+      width: 100%;
+      height: 50%;
+      background: linear-gradient(145deg, #ffb6c1, #ff9eb0);
       top: 0;
       left: 0;
-      width: 260px;
-      height: 80px;
-      background: linear-gradient(145deg, #ffb6c1, #ff8fab);
       clip-path: polygon(0 0, 50% 100%, 100% 0);
       transform-origin: top;
-      transition: transform 1s ease-in-out;
-      z-index: 2;
+      transition: transform 1.2s ease;
+      box-shadow: inset 0 -3px 5px rgba(0,0,0,0.05);
     }
 
     .letter {
       position: absolute;
-      top: 30px;
-      left: 10px;
-      width: 240px;
-      height: 120px;
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(255,182,193,0.5);
+      top: 40px;
+      left: 15px;
+      width: 250px;
+      height: 130px;
+      background: #fffdf8;
+      border: 1px solid #f4c2c2;
+      border-radius: 6px;
       padding: 15px;
-      color: #e75480;
-      font-size: 1em;
-      line-height: 1.6em;
-      text-align: center;
-      overflow: hidden;
-      opacity: 0;
+      box-shadow: 0 0 15px rgba(255,182,193,0.3);
       transform: translateY(0);
+      opacity: 0;
       transition: all 1s ease;
+      overflow: hidden;
     }
 
     .envelope.open .flap {
@@ -70,28 +70,28 @@
     .envelope.open .letter {
       top: -240px;
       opacity: 1;
-      animation: showText 2s ease forwards;
+      animation: fadeIn 2s ease forwards;
     }
 
-    @keyframes showText {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    /* 💓 Tim giữa */
-    .heart {
+    /* 💓 Tim nền */
+    .heart-center {
       position: absolute;
-      top: 70%;
+      width: 90px;
+      height: 90px;
+      top: 60%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 100px;
-      height: 90px;
       background: #ff4d88;
       clip-path: path("M10,30 A20,20 0,0,1 50,30 A20,20 0,0,1 90,30 Q90,60 50,90 Q10,60 10,30 Z");
-      animation: heartbeat 1.6s infinite ease-in-out;
-      filter: drop-shadow(0 0 15px #ff99cc);
-      opacity: 0.7;
-      z-index: 1;
+      animation: heartbeat 1.8s infinite ease-in-out;
+      opacity: 0.6;
+      filter: drop-shadow(0 0 15px #ff8fa3);
+      z-index: 0;
     }
 
     @keyframes heartbeat {
@@ -101,44 +101,44 @@
       75% { transform: translate(-50%, -50%) scale(1.1); }
     }
 
-    /* ✨ Ảnh bay quanh */
-    .floating-img {
+    /* 🌸 Ảnh repo xoay quanh */
+    .orbit-img {
       position: absolute;
-      width: 90px;
-      height: 90px;
+      width: 100px;
+      height: 100px;
       border-radius: 15px;
       object-fit: cover;
-      animation: float 12s infinite ease-in-out;
-      box-shadow: 0 0 20px rgba(255,182,193,0.6);
-      opacity: 0.8;
+      opacity: 0;
+      animation: fadeInRotate 25s linear infinite;
+      box-shadow: 0 0 20px rgba(255,182,193,0.4);
+      transition: opacity 2s;
       pointer-events: auto;
-      transition: transform 0.3s;
     }
 
-    .floating-img:hover {
-      transform: scale(1.3);
-      z-index: 30;
+    @keyframes fadeInRotate {
+      from { transform: rotate(0deg) translateX(250px) rotate(0deg); opacity: 1; }
+      to { transform: rotate(360deg) translateX(250px) rotate(-360deg); opacity: 1; }
     }
 
-    @keyframes float {
-      0% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-40px) rotate(10deg); }
-      100% { transform: translateY(0) rotate(-10deg); }
+    /* ✍️ Chữ viết tay */
+    .typed {
+      font-size: 16px;
+      color: #e75480;
+      line-height: 1.5em;
+      white-space: pre-line;
+      overflow: hidden;
+      border-right: 2px solid #e75480;
+      animation: typing 6s steps(60) 1s 1 normal both, blink 0.8s step-end infinite alternate;
     }
 
-    /* ❤️ Tim bay */
-    .heart-float {
-      position: absolute;
-      color: #ff69b4;
-      font-size: 20px;
-      animation: heartUp 4s ease-in-out forwards;
-      opacity: 0.8;
-      z-index: 0;
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
     }
 
-    @keyframes heartUp {
-      0% { transform: translateY(0) scale(1); opacity: 1; }
-      100% { transform: translateY(-200px) scale(1.5); opacity: 0; }
+    @keyframes blink {
+      from, to { border-color: transparent }
+      50% { border-color: #e75480; }
     }
 
     audio { display: none; }
@@ -149,14 +149,11 @@
   <div class="envelope" id="envelope">
     <div class="flap"></div>
     <div class="letter">
-      💐 <b>Chúc mừng ngày 20/10</b> 💖<br><br>
-      Chúc em luôn xinh đẹp, dịu dàng và hạnh phúc như nắng sớm mai ☀️<br>
-      Cảm ơn em vì đã khiến cuộc sống này trở nên ấm áp hơn từng ngày 🌸<br>
-      <i>Gửi em tất cả thương yêu chân thành nhất 💌</i>
+      <div id="message" class="typed"></div>
     </div>
   </div>
 
-  <div class="heart"></div>
+  <div class="heart-center"></div>
 
   <audio id="bg-music">
     <source src="https://cdn.pixabay.com/download/audio/2023/03/02/audio_bf7fdd82b1.mp3?filename=romantic-piano-145990.mp3" type="audio/mpeg">
@@ -164,7 +161,16 @@
 
   <script>
     const envelope = document.getElementById("envelope");
+    const message = document.getElementById("message");
     const music = document.getElementById("bg-music");
+
+    const text = `💐 Gửi em nhân ngày 20/10 💖
+
+Chúc em luôn xinh đẹp, dịu dàng và hạnh phúc.
+Cảm ơn em vì đã mang đến những điều ngọt ngào và ấm áp.
+
+Mong em sẽ luôn mỉm cười thật nhiều nhé 🌸
+💌 – Từ người luôn nghĩ về em –`;
 
     const imageUrls = [
       "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z7134417310872_3288378d0865045c48b5dd3a269ff51d.jpg",
@@ -178,33 +184,33 @@
       if (!envelope.classList.contains("open")) {
         envelope.classList.add("open");
         music.play();
-        startEffects();
+        showLetter();
+        createOrbitImages();
       }
     });
 
-    function startEffects() {
-      // 🌸 Ảnh bay quanh (chỉ bên ngoài thư)
-      setInterval(() => {
-        const img = document.createElement("img");
-        img.src = imageUrls[Math.floor(Math.random() * imageUrls.length)];
-        img.classList.add("floating-img");
-        img.style.top = Math.random() * 80 + "%";
-        img.style.left = Math.random() * 90 + "%";
-        img.style.animationDuration = (8 + Math.random() * 4) + "s";
-        document.body.appendChild(img);
-        setTimeout(() => img.remove(), 15000);
-      }, 2000);
+    function showLetter() {
+      let i = 0;
+      const speed = 40;
+      function typeWriter() {
+        if (i < text.length) {
+          message.innerHTML += text.charAt(i);
+          i++;
+          setTimeout(typeWriter, speed);
+        }
+      }
+      setTimeout(typeWriter, 1200);
+    }
 
-      // 💖 Tim bay nhẹ nhàng
-      setInterval(() => {
-        const heart = document.createElement("div");
-        heart.classList.add("heart-float");
-        heart.innerHTML = "💖";
-        heart.style.left = Math.random() * 100 + "%";
-        heart.style.bottom = "0px";
-        document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 4000);
-      }, 600);
+    function createOrbitImages() {
+      imageUrls.forEach((url, index) => {
+        const img = document.createElement("img");
+        img.src = url;
+        img.classList.add("orbit-img");
+        img.style.animationDelay = `${index * 5}s`;
+        document.body.appendChild(img);
+        setTimeout(() => img.style.opacity = 1, 1000 * index);
+      });
     }
   </script>
 </body>
