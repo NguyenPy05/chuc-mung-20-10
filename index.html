@@ -69,7 +69,6 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Hiệu ứng trái tim */
     .heart {
       position: absolute;
       color: #ff6fa5;
@@ -85,7 +84,6 @@
       100% { transform: translateY(-200px) scale(0.8); opacity: 0; }
     }
 
-    /* Trái tim đập giữa trang */
     .center-heart {
       position: absolute;
       left: 50%;
@@ -107,6 +105,9 @@
       100% { transform: translate(-50%, -50%) scale(1); }
     }
 
+    audio {
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -116,6 +117,11 @@
      Mong rằng hôm nay và mỗi ngày sau này, nụ cười của em sẽ luôn nở rộ như hoa hồng buổi sớm 🌹</p>
 
   <div class="center-heart"></div>
+
+  <!-- 🌸 Nhạc nền -->
+  <audio id="bg-music" autoplay loop>
+    <source src="https://cdn.pixabay.com/download/audio/2023/03/02/audio_bf7fdd82b1.mp3?filename=romantic-piano-145990.mp3" type="audio/mpeg">
+  </audio>
 
   <script>
     const imageUrls = [
@@ -131,7 +137,6 @@
       "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z7134417378667_5dc36bc5c8a1f7d37a4ec5cfa8ee9a66.jpg"
     ];
 
-    // Ảnh bay
     function createFloatingImage() {
       const img = document.createElement("img");
       img.src = imageUrls[Math.floor(Math.random() * imageUrls.length)];
@@ -143,7 +148,6 @@
       setTimeout(() => img.remove(), 7000);
     }
 
-    // Trái tim bay
     function createHeart() {
       const heart = document.createElement("div");
       heart.classList.add("heart");
@@ -157,6 +161,12 @@
 
     setInterval(createFloatingImage, 1000);
     setInterval(createHeart, 300);
+
+    // Xử lý tự phát nhạc trên điện thoại (phải tương tác trước)
+    document.addEventListener("click", () => {
+      const music = document.getElementById("bg-music");
+      music.play();
+    });
   </script>
 </body>
 </html>
