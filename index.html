@@ -3,217 +3,206 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>💌 Thư gửi em – 20/10 💖</title>
+  <title>💌 Thư Gửi Em Ngày 20/10 💖</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
+      margin: 0;
       height: 100vh;
-      background: radial-gradient(circle at top left, #ffe6eb, #ffc0cb, #ffdee9);
-      font-family: 'Segoe UI', sans-serif;
       overflow: hidden;
+      background: radial-gradient(circle at top, rgba(255,192,203,0.5), rgba(255,182,193,0.1), rgba(255,240,245,0.3));
+      font-family: 'Segoe UI', sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
+      color: #fff;
+      position: relative;
     }
 
-    h1 {
-      color: #ff69b4;
-      font-size: 2.5em;
-      text-shadow: 0 0 15px #fff;
-      animation: fadeIn 2s ease-in-out;
-    }
-
+    /* Phong bì */
     .envelope {
       position: relative;
-      width: 280px;
-      height: 180px;
-      background: #fff0f5;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(255, 182, 193, 0.8);
+      width: 220px;
+      height: 140px;
+      background: #ffb6c1;
+      border-radius: 8px;
       cursor: pointer;
-      transition: transform 0.5s ease;
+      box-shadow: 0 0 30px rgba(255,182,193,0.8);
+      transition: transform 0.4s ease;
+      z-index: 10;
+    }
+
+    .envelope:hover {
+      transform: scale(1.05);
     }
 
     .flap {
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 50%;
-      background: #ff99c8;
-      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      width: 220px;
+      height: 70px;
+      background: #ff9eb5;
+      clip-path: polygon(0 0, 50% 100%, 100% 0);
       transform-origin: top;
       transition: transform 1s ease;
-      z-index: 2;
     }
 
     .letter {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 260px;
-      height: 160px;
-      background: #fff;
-      border-radius: 8px;
-      transform: translate(-50%, -50%) translateY(100%);
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      transition: transform 1s ease;
-      overflow: hidden;
+      top: 20px;
+      left: 10px;
+      width: 200px;
+      height: 100px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255,182,193,0.5);
+      padding: 15px;
+      text-align: center;
+      color: #ff4081;
+      font-size: 1em;
       opacity: 0;
-      z-index: 1;
+      transition: all 1s ease;
+      overflow: hidden;
+      line-height: 1.5em;
     }
 
-    .letter.open {
-      transform: translate(-50%, -50%) translateY(-40%);
-      opacity: 1;
-    }
-
-    .flap.open {
+    /* Khi mở thư */
+    .open .flap {
       transform: rotateX(180deg);
     }
 
-    .letter-content {
-      padding: 20px;
-      color: #ff6699;
-      font-size: 1.1em;
-      text-align: center;
-      line-height: 1.6em;
-      animation: fadeIn 3s ease-in-out;
+    .open .letter {
+      top: -250px;
+      opacity: 1;
+      animation: fadeInText 4s ease forwards;
     }
 
+    @keyframes fadeInText {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Tim trung tâm */
     .heart {
       position: absolute;
-      color: #ff6fa5;
-      font-size: 20px;
-      animation: floatUp 5s ease-in-out forwards;
-      opacity: 0.8;
-    }
-
-    @keyframes floatUp {
-      0% { transform: translateY(0) scale(1); opacity: 1; }
-      50% { transform: translateY(-60px) scale(1.3); opacity: 0.9; }
-      100% { transform: translateY(-200px) scale(0.8); opacity: 0; }
-    }
-
-    .floating-img {
-      position: absolute;
-      width: 80px;
-      height: 80px;
-      border-radius: 15px;
-      object-fit: cover;
-      box-shadow: 0 0 15px rgba(255, 182, 193, 0.7);
-      animation: float 6s infinite ease-in-out;
-      z-index: 0;
-    }
-
-    @keyframes float {
-      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-      50% { transform: translateY(-50px) rotate(10deg); opacity: 0.9; }
-      100% { transform: translateY(0) rotate(-10deg); opacity: 1; }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .center-heart {
-      position: absolute;
+      top: 70%;
       left: 50%;
-      top: 85%;
       transform: translate(-50%, -50%);
-      width: 90px;
-      height: 80px;
+      width: 100px;
+      height: 90px;
       background: #ff4d88;
       clip-path: path("M10,30 A20,20 0,0,1 50,30 A20,20 0,0,1 90,30 Q90,60 50,90 Q10,60 10,30 Z");
-      animation: heartbeat 1.4s infinite ease-in-out;
-      box-shadow: 0 0 20px #ff99c8;
-      display: none;
-      z-index: 0;
+      animation: heartbeat 1.6s infinite ease-in-out;
+      filter: drop-shadow(0 0 20px #ff99cc);
+      z-index: 1;
+      opacity: 0.7;
     }
 
     @keyframes heartbeat {
       0%, 100% { transform: translate(-50%, -50%) scale(1); }
-      25%, 75% { transform: translate(-50%, -50%) scale(1.2); }
+      25% { transform: translate(-50%, -50%) scale(1.2); }
       50% { transform: translate(-50%, -50%) scale(1); }
+      75% { transform: translate(-50%, -50%) scale(1.15); }
+    }
+
+    /* Ảnh bay quanh */
+    .floating-img {
+      position: absolute;
+      width: 90px;
+      height: 90px;
+      border-radius: 15px;
+      object-fit: cover;
+      animation: float 10s infinite ease-in-out;
+      box-shadow: 0 0 15px rgba(255,182,193,0.7);
+      transition: transform 0.3s;
+      opacity: 0.9;
+    }
+
+    .floating-img:hover {
+      transform: scale(1.3);
+      z-index: 20;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-40px) rotate(10deg); }
+      100% { transform: translateY(0) rotate(-10deg); }
+    }
+
+    /* Nền hoa tim */
+    .heart-float {
+      position: absolute;
+      color: #ff69b4;
+      font-size: 20px;
+      animation: heartUp 4s ease-in-out forwards;
+      opacity: 0.8;
+    }
+
+    @keyframes heartUp {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-200px) scale(1.5); opacity: 0; }
     }
 
     audio { display: none; }
   </style>
 </head>
 <body>
-  <h1>💐 Gửi em – Ngày 20/10 💖</h1>
-
   <div class="envelope" id="envelope">
-    <div class="flap" id="flap"></div>
+    <div class="flap"></div>
     <div class="letter" id="letter">
-      <div class="letter-content">
-        Gửi đến cô gái khiến thế giới của anh trở nên tươi đẹp hơn 🌸<br><br>
-        Chúc em luôn mỉm cười rạng rỡ như ánh nắng ban mai,<br>
-        luôn được yêu thương và trân trọng – không chỉ hôm nay mà là mỗi ngày.<br><br>
-        Cảm ơn em vì đã xuất hiện, vì đã khiến trái tim này biết rung động một lần nữa 💗<br>
-        Chúc em một ngày 20/10 thật hạnh phúc, đáng nhớ và tràn ngập yêu thương 💌
-      </div>
+      💖 <b>Chúc mừng ngày 20/10</b> 💐<br><br>
+      Chúc em luôn xinh đẹp, dịu dàng và hạnh phúc như nắng sớm mai ☀️<br>
+      Cảm ơn em vì đã khiến cuộc sống này trở nên ấm áp và ngọt ngào hơn 🌸<br>
+      <i>Gửi đến em tất cả thương yêu chân thành nhất 💌</i>
     </div>
   </div>
 
-  <div class="center-heart" id="centerHeart"></div>
+  <div class="heart"></div>
 
-  <audio id="bg-music" loop>
+  <audio id="bg-music">
     <source src="https://cdn.pixabay.com/download/audio/2023/03/02/audio_bf7fdd82b1.mp3?filename=romantic-piano-145990.mp3" type="audio/mpeg">
   </audio>
 
   <script>
+    const envelope = document.getElementById("envelope");
+    const music = document.getElementById("bg-music");
     const imageUrls = [
       "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z7134417310872_3288378d0865045c48b5dd3a269ff51d.jpg",
       "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z6985434562957_7dc129c6143f8e26c80d4b5efadde0f6.jpg",
       "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z7134417330706_f29362b4f81b3acfd06a6ce2642dc125.jpg",
       "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z7134417337460_c83d99b396f9b529d6e9c7ebef57e887.jpg",
-      "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z7134417340685_d372ed2e303f099c419226ed1cb7b8eb.jpg",
       "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z7134417340919_eeff56eebca69e118a921298c9d7b912.jpg"
     ];
 
-    const flap = document.getElementById("flap");
-    const letter = document.getElementById("letter");
-    const envelope = document.getElementById("envelope");
-    const heart = document.getElementById("centerHeart");
-    const music = document.getElementById("bg-music");
-
     envelope.addEventListener("click", () => {
-      flap.classList.toggle("open");
-      letter.classList.toggle("open");
-      heart.style.display = "block";
-      setInterval(createHeart, 400);
-      setInterval(createFloatingImage, 1500);
+      envelope.classList.add("open");
       music.play();
+      startEffects();
     });
 
-    function createHeart() {
-      const h = document.createElement("div");
-      h.classList.add("heart");
-      h.innerHTML = "💖";
-      h.style.left = Math.random() * 100 + "%";
-      h.style.bottom = "0px";
-      h.style.fontSize = Math.random() * 20 + 15 + "px";
-      document.body.appendChild(h);
-      setTimeout(() => h.remove(), 5000);
-    }
+    function startEffects() {
+      // Ảnh bay
+      setInterval(() => {
+        const img = document.createElement("img");
+        img.src = imageUrls[Math.floor(Math.random() * imageUrls.length)];
+        img.classList.add("floating-img");
+        img.style.top = Math.random() * 80 + "%";
+        img.style.left = Math.random() * 90 + "%";
+        img.style.animationDuration = (6 + Math.random() * 4) + "s";
+        document.body.appendChild(img);
+        setTimeout(() => img.remove(), 12000);
+      }, 1500);
 
-    function createFloatingImage() {
-      const img = document.createElement("img");
-      img.src = imageUrls[Math.floor(Math.random() * imageUrls.length)];
-      img.classList.add("floating-img");
-      img.style.top = Math.random() * 80 + "%";
-      img.style.left = Math.random() * 90 + "%";
-      img.style.animationDuration = (4 + Math.random() * 4) + "s";
-      document.body.appendChild(img);
-      setTimeout(() => img.remove(), 7000);
+      // Tim bay
+      setInterval(() => {
+        const heart = document.createElement("div");
+        heart.classList.add("heart-float");
+        heart.innerHTML = "💖";
+        heart.style.left = Math.random() * 100 + "%";
+        heart.style.bottom = "0px";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 4000);
+      }, 500);
     }
   </script>
 </body>
