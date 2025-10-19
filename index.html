@@ -3,12 +3,53 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>💌 Gửi Em Ngày 20/10 💖</title>
+<title>💌 Gửi bà chãa của anh nhân ngày 20/10 💖</title>
 
-<!-- 🌸 Font chữ mềm mại, tinh tế -->
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
+  .orbit-img {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  opacity: 0;
+  transition: all 0.6s ease;
+  transform: scale(1) rotate(0deg);
+  cursor: pointer;
+  z-index: 5;
+}
+
+.orbit-img.active {
+  transform: scale(1.3) rotate(360deg);
+  filter: brightness(1.3);
+  z-index: 10;
+}
+
+.heart-burst {
+  position: absolute;
+  font-size: 1.8em;
+  animation: heartFloat 1.2s ease-out forwards;
+  pointer-events: none;
+  z-index: 20;
+}
+
+@keyframes heartFloat {
+  0% {
+    opacity: 1;
+    transform: scale(0.5) translateY(0);
+  }
+  50% {
+    transform: scale(1.3) translateY(-30px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8) translateY(-80px);
+  }
+}
+
   body {
     margin: 0;
     height: 100vh;
@@ -21,7 +62,6 @@
     position: relative;
   }
 
-  /* ✉️ Phong bì */
   .envelope {
     position: relative;
     width: 45vw;
@@ -61,20 +101,19 @@
     transition: all 1s ease-in-out;
   }
 
-  /* 💌 Lá thư */
   .real-letter {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 85vw;
-    max-width: 360px;
-    min-height: 400px;
+    width: 95vw;
+    max-width: 400px;
+    min-height: 420px;
     background: #fffdf7;
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(255,182,193,0.4);
+    box-shadow: 0 10px 40px rgba(255,182,193,0.45);
     transform: translate(-50%, -50%) scale(0.8);
     opacity: 0;
-    transition: all 1.2s ease;
+    transition: all 1.5s ease;
     padding: 25px;
     line-height: 1.8em;
     color: #663046;
@@ -86,21 +125,14 @@
   .real-letter.show {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1);
-    animation: paperRise 1.5s ease forwards;
+    box-shadow: 0 0 30px rgba(255, 150, 170, 0.6);
   }
 
-  @keyframes paperRise {
-    from { transform: translate(-50%, -30%) scale(0.8); opacity: 0; }
-    to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-  }
-
-  /* 💕 Chữ gõ mềm mại */
   .typed {
     font-family: 'Great Vibes', cursive;
     font-size: clamp(18px, 3.8vw, 22px);
     color: #7a3a52;
     white-space: pre-line;
-    overflow: hidden;
     text-align: justify;
     opacity: 0;
     animation: fadeInText 1s ease forwards 0.5s;
@@ -110,7 +142,6 @@
     to { opacity: 1; }
   }
 
-  /* 💗 Tim trung tâm */
   .heart-center {
     position: absolute;
     top: 65%;
@@ -118,79 +149,102 @@
     transform: translate(-50%, -50%);
     width: 25vw;
     max-width: 120px;
-    height: auto;
     z-index: 0;
-    animation: realBeat 1.8s infinite ease-in-out;
+    animation: beatPulse 1.8s infinite ease-in-out;
+    filter: drop-shadow(0 0 15px rgba(255,100,130,0.6));
   }
 
-  .heart-center svg {
-    width: 100%;
-    height: auto;
-    filter: drop-shadow(0 0 25px rgba(255,100,130,0.6));
-  }
-
-  @keyframes realBeat {
-    0% { transform: translate(-50%, -50%) scale(1); }
-    25% { transform: translate(-50%, -50%) scale(1.25); }
+  @keyframes beatPulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); filter: drop-shadow(0 0 15px rgba(255, 80, 110, 0.7)); }
+    25% { transform: translate(-50%, -50%) scale(1.25); filter: drop-shadow(0 0 25px rgba(255, 100, 130, 0.9)); }
     50% { transform: translate(-50%, -50%) scale(1); }
     75% { transform: translate(-50%, -50%) scale(1.15); }
-    100% { transform: translate(-50%, -50%) scale(1); }
   }
 
-  /* 🌸 Ảnh orbit */
   .orbit-img {
     position: absolute;
-    width: 18vw;
-    max-width: 90px;
-    height: 18vw;
-    max-height: 90px;
-    border-radius: 15px;
+    width: 17vw;
+    max-width: 100px;
+    height: 17vw;
+    max-height: 100px;
+    border-radius: 20px;
     object-fit: cover;
     opacity: 0;
-    animation: orbit 40s linear infinite;
-    box-shadow: 0 0 20px rgba(255,182,193,0.4);
-    transition: opacity 2s;
-    z-index: -1;
+    animation: floatAround 45s linear infinite;
+    box-shadow: 0 0 25px rgba(255,182,193,0.6);
+    cursor: pointer;
+    transition: transform 0.4s ease, opacity 2s;
+    z-index: 3;
   }
 
-  @keyframes orbit {
+  @keyframes floatAround {
     from { transform: rotate(0deg) translateX(35vw) rotate(0deg); }
     to { transform: rotate(360deg) translateX(35vw) rotate(-360deg); }
   }
 
-  audio { display: none; }
+  .orbit-img.active {
+    animation: none;
+    transform: scale(1.4) rotate(10deg);
+    box-shadow: 0 0 30px rgba(255,105,135,0.8);
+    z-index: 10;
+  }
 
-  /* 📱 Mobile */
+  .heart-burst {
+    position: absolute;
+    font-size: 22px;
+    animation: burstUp 1.2s ease forwards;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  @keyframes burstUp {
+    0% { opacity: 1; transform: translateY(0) scale(1); }
+    60% { opacity: 1; transform: translateY(-60px) scale(1.5); }
+    100% { opacity: 0; transform: translateY(-120px) scale(0.8); }
+  }
+
+  .flower {
+    position: fixed;
+    top: -10px;
+    width: 20px;
+    height: 20px;
+    background-image: url('https://gallery.yopriceville.com/var/resizes/Free-Clipart-Pictures/Flowers-PNG/Beautiful_Flower_PNG_Transparent_Clipart.png?m=1629831824');
+    background-size: cover;
+    opacity: 0.9;
+    animation: fall linear infinite;
+    z-index: 1;
+  }
+
+  @keyframes fall {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity: 0.7; }
+  }
+
+  .mini-heart {
+    position: absolute;
+    font-size: 14px;
+    animation: floatHeart 4s ease-in-out infinite;
+    opacity: 0.8;
+  }
+
+  @keyframes floatHeart {
+    0% { transform: translateY(0) scale(1); opacity: 0.8; }
+    50% { transform: translateY(-30px) scale(1.3); opacity: 1; }
+    100% { transform: translateY(0) scale(1); opacity: 0.8; }
+  }
+
   @media (max-width: 600px) {
     .envelope { width: 70vw; height: 45vw; }
     .real-letter { width: 90vw; padding: 20px; }
-    .typed { font-size: clamp(16px, 4vw, 20px); line-height: 1.7em; }
-    .orbit-img {
-      width: 20vw; height: 20vw;
-      animation-duration: 50s;
-      opacity: 0.7;
-    }
-    @keyframes orbit {
-      from { transform: rotate(0deg) translateX(28vw) rotate(0deg); }
-      to { transform: rotate(360deg) translateX(28vw) rotate(-360deg); }
-    }
+    .orbit-img { width: 22vw; height: 22vw; animation-duration: 50s; }
   }
 </style>
 </head>
 
 <body>
+  <div class="envelope" id="envelope"><div class="flap"></div></div>
+  <div class="real-letter" id="realLetter"><div id="message" class="typed"></div></div>
 
-  <!-- ✉️ Phong bì -->
-  <div class="envelope" id="envelope">
-    <div class="flap"></div>
-  </div>
-
-  <!-- 💌 Lá thư -->
-  <div class="real-letter" id="realLetter">
-    <div id="message" class="typed"></div>
-  </div>
-
-  <!-- ❤️ Tim -->
   <div class="heart-center">
     <svg viewBox="0 0 100 90">
       <defs>
@@ -216,17 +270,16 @@
 
     const text = `💐 Gửi em – cục dànggg của anhh 💐
 
-20/10 – anh không biết nói lời hoa mỹ, chỉ biết rằng, có em trong cuộc đời này là một điều thật đặc biệt.  
-Cảm ơn em, vì dù đôi khi anh chưa đủ khéo léo, chưa luôn ở bên đúng lúc, nhưng em vẫn là người khiến anh muốn cố gắng từng ngày.
+20/10 anh không biết nói làm sao, chỉ biết rằng, có em trong cuộc đời này là một điều thật đặc biệt.
+Cảm ơn cục dàngg, vì dù đôi khi anh chưa đủ khéo léo, chưa luôn ở bên đúng lúc, nhưng em vẫn là người khiến anh muốn cố gắng từng ngày.
 
-Anh biết, tình yêu không chỉ là những món quà hay lời nói ngọt ngào… mà là sự lắng nghe, thấu hiểu và cùng nhau đi qua cả những lúc mệt mỏi, hiểu lầm.  
-Anh vẫn đang học cách yêu em đúng cách hơn – nhẹ nhàng hơn, trưởng thành hơn, và đủ ấm để em thấy an lòng.
+Anh biết, tình yêu không chỉ là những món quà hay lời nói ngọt ngào… mà là sự lắng nghe, thấu hiểu và cùng nhau đi qua cả những lúc mệt mỏi, hiểu lầm.
+Anh vẫn đang học cách yêu em đúng cách hơn nhẹ nhàng hơn, trưởng thành hơn, và đủ ấm để em thấy an lòng.
 
-Ngày hôm nay, anh chỉ mong em cười nhiều một chút, thấy lòng mình yên hơn một chút, và biết rằng – có một người vẫn luôn nghĩ về em, lo cho em, dù chẳng nói ra nhiều.
+Ngày hôm nay, anh chỉ mong em cười nhiều một chút, thấy lòng mình yên hơn một chút và biết rằng có một người vẫn luôn nghĩ về em, lo cho em, dù chẳng nói ra nhiều.
 
-Chúc em luôn xinh đẹp, mạnh mẽ và hạnh phúc, không chỉ hôm nay mà là mọi ngày.  
-Và nếu có thể, hãy để anh được là người làm em thấy an tâm hơn mỗi khi mệt mỏi.
-
+Chúc em luôn xinh đẹp, mạnh mẽ và hạnh phúc, không chỉ hôm nay mà là mọi ngày.
+Và hãy để anh được là người làm em thấy an tâm hơn mỗi khi em thấy mệt mỏi.
 💌 Từ ông chãaa của em – người luôn muốn đồng hành, dõi theo và muốn chăm sóc bà chãaa`;
 
     const imageUrls = [
@@ -234,7 +287,11 @@ Và nếu có thể, hãy để anh được là người làm em thấy an tâm
       "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z6985434562957_7dc129c6143f8e26c80d4b5efadde0f6.jpg",
       "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z7134417330706_f29362b4f81b3acfd06a6ce2642dc125.jpg",
       "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z7134417337460_c83d99b396f9b529d6e9c7ebef57e887.jpg",
-      "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z7134417340919_eeff56eebca69e118a921298c9d7b912.jpg"
+      "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z7134417340919_eeff56eebca69e118a921298c9d7b912.jpg",
+      "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z7134417355677_57c9c1ec6f39f76ee57f298a45af2618.jpg",
+      "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z7134417361939_1987fd3d5b10c3e4b272c216e1f0703a.jpg",
+      "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z7134417378207_6b3b33c61cf0bfc72f68836a6f78a789.jpg",
+      "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z7134417381234_ee4c12ff34da067e32f40a6a68a3d46a.jpg"
     ];
 
     envelope.addEventListener("click", () => {
@@ -260,6 +317,8 @@ Và nếu có thể, hãy để anh được là người làm em thấy an tâm
       }
       setTimeout(typeWriter, 1200);
       createOrbitImages();
+      startFlowerFall();
+      createMiniHearts();
     }
 
     function createOrbitImages() {
@@ -271,8 +330,56 @@ Và nếu có thể, hãy để anh được là người làm em thấy an tâm
         img.classList.add("orbit-img");
         img.style.animationDelay = `${index * 5}s`;
         document.body.appendChild(img);
-        setTimeout(() => img.style.opacity = 1, 1500 * index);
+        setTimeout(() => img.style.opacity = 1, 1200 * index);
+
+        img.addEventListener("click", (e) => {
+  if (!img.classList.contains("active")) {
+    img.classList.add("active");
+    createHeartBurst(e.pageX, e.pageY);
+    for (let j = 0; j < 10; j++) {
+      setTimeout(() => createHeartBurst(
+        e.pageX + (Math.random() * 60 - 30),
+        e.pageY + (Math.random() * 40 - 20)
+      ), j * 150);
+    }
+    setTimeout(() => img.classList.remove("active"), 1200);
+  }
+});
+
       });
+    }
+
+    function createHeartBurst(x, y) {
+      const heart = document.createElement("div");
+      heart.className = "heart-burst";
+      heart.innerHTML = "❤️";
+      heart.style.left = `${x - 10}px`;
+      heart.style.top = `${y - 20}px`;
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 1200);
+    }
+
+    function startFlowerFall() {
+      setInterval(() => {
+        const flower = document.createElement("div");
+        flower.className = "flower";
+        flower.style.left = Math.random() * 100 + "vw";
+        flower.style.animationDuration = 5 + Math.random() * 5 + "s";
+        document.body.appendChild(flower);
+        setTimeout(() => flower.remove(), 10000);
+      }, 400);
+    }
+
+    function createMiniHearts() {
+      for (let i = 0; i < 10; i++) {
+        const h = document.createElement("div");
+        h.className = "mini-heart";
+        h.innerHTML = "💖";
+        h.style.left = 40 + Math.random() * 20 + "%";
+        h.style.top = 40 + Math.random() * 20 + "%";
+        h.style.animationDelay = i * 0.5 + "s";
+        document.body.appendChild(h);
+      }
     }
   </script>
 </body>
