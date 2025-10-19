@@ -259,7 +259,7 @@
   </div>
 
   <audio id="bg-music">
-    <source src="https://cdn.pixabay.com/download/audio/2023/03/02/audio_bf7fdd82b1.mp3?filename=romantic-piano-145990.mp3" type="audio/mpeg">
+    <source src="https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/'HỌC CÁCH YÊU EM' - Phạm Đình Thái Ngân ft. Lou Hoàng.mp3" type="audio/mpeg">
   </audio>
 
   <script>
@@ -308,6 +308,15 @@ const imageMessages = [
 
 envelope.addEventListener("click", () => {
   envelope.classList.add("open");
+
+  music.volume = 0.6;
+  const playPromise = music.play();
+  if (playPromise !== undefined) {
+    playPromise.catch(err => {
+      console.log("Tự động phát nhạc bị chặn:", err);
+    });
+  }
+
   setTimeout(() => envelope.classList.add("fade-out"), 1200);
   setTimeout(() => {
     envelope.style.display = "none";
@@ -431,7 +440,6 @@ function createMiniHearts() {
 </script>
 </body>
 </html>
-
 
 
 
