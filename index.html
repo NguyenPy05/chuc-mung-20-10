@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>💌 Gửi Em Ngày 20/10 💖</title>
+
+<!-- 🌸 Font chữ mềm mại, tinh tế -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;500&display=swap" rel="stylesheet">
+
 <style>
   body {
     margin: 0;
@@ -13,7 +17,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Georgia', serif;
+    font-family: 'Quicksand', sans-serif;
     position: relative;
   }
 
@@ -26,7 +30,7 @@
     max-height: 200px;
     background: #fff0f5;
     border: 2px solid #ffb6c1;
-    border-radius: 8px;
+    border-radius: 10px;
     box-shadow: 0 10px 30px rgba(255, 182, 193, 0.5);
     cursor: pointer;
     perspective: 800px;
@@ -63,21 +67,20 @@
     top: 50%;
     left: 50%;
     width: 85vw;
-    max-width: 340px;
-    min-height: 380px;
+    max-width: 360px;
+    min-height: 400px;
     background: #fffdf7;
-    border-radius: 10px;
+    border-radius: 15px;
     box-shadow: 0 10px 30px rgba(255,182,193,0.4);
     transform: translate(-50%, -50%) scale(0.8);
     opacity: 0;
     transition: all 1.2s ease;
-    padding: 20px;
-    line-height: 1.6em;
+    padding: 25px;
+    line-height: 1.8em;
     color: #663046;
     background-image: linear-gradient(180deg, #fffdf7 0%, #fff8f2 100%);
-    font-family: 'Dancing Script', cursive;
     text-align: center;
-    z-index: 5; /* để trên ảnh orbit */
+    z-index: 5;
   }
 
   .real-letter.show {
@@ -91,12 +94,20 @@
     to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
   }
 
+  /* 💕 Chữ gõ mềm mại */
   .typed {
-    font-size: clamp(16px, 3.5vw, 20px);
-    color: #884d63;
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(18px, 3.8vw, 22px);
+    color: #7a3a52;
     white-space: pre-line;
     overflow: hidden;
-    /* ❌ bỏ animation typing CSS để tránh lỗi hiển thị hết luôn */
+    text-align: justify;
+    opacity: 0;
+    animation: fadeInText 1s ease forwards 0.5s;
+  }
+
+  @keyframes fadeInText {
+    to { opacity: 1; }
   }
 
   /* 💗 Tim trung tâm */
@@ -115,12 +126,12 @@
   .heart-center svg {
     width: 100%;
     height: auto;
-    filter: drop-shadow(0 0 20px rgba(255,100,130,0.5));
+    filter: drop-shadow(0 0 25px rgba(255,100,130,0.6));
   }
 
   @keyframes realBeat {
     0% { transform: translate(-50%, -50%) scale(1); }
-    25% { transform: translate(-50%, -50%) scale(1.2); }
+    25% { transform: translate(-50%, -50%) scale(1.25); }
     50% { transform: translate(-50%, -50%) scale(1); }
     75% { transform: translate(-50%, -50%) scale(1.15); }
     100% { transform: translate(-50%, -50%) scale(1); }
@@ -139,7 +150,7 @@
     animation: orbit 40s linear infinite;
     box-shadow: 0 0 20px rgba(255,182,193,0.4);
     transition: opacity 2s;
-    z-index: -1; /* cho bay phía sau lá thư */
+    z-index: -1;
   }
 
   @keyframes orbit {
@@ -149,39 +160,24 @@
 
   audio { display: none; }
 
-  /* 📱 Giao diện điện thoại */
+  /* 📱 Mobile */
   @media (max-width: 600px) {
-    .envelope {
-      width: 70vw;
-      height: 45vw;
-    }
-
-    .real-letter {
-      width: 90vw;
-      padding: 15px;
-    }
-
-    .typed {
-      font-size: clamp(14px, 4vw, 18px);
-    }
-
+    .envelope { width: 70vw; height: 45vw; }
+    .real-letter { width: 90vw; padding: 20px; }
+    .typed { font-size: clamp(16px, 4vw, 20px); line-height: 1.7em; }
     .orbit-img {
-      width: 18vw;
-      height: 18vw;
+      width: 20vw; height: 20vw;
       animation-duration: 50s;
-      opacity: 0.6;
+      opacity: 0.7;
     }
-
-    /* Giảm bán kính quỹ đạo để ảnh không che thư */
     @keyframes orbit {
       from { transform: rotate(0deg) translateX(28vw) rotate(0deg); }
       to { transform: rotate(360deg) translateX(28vw) rotate(-360deg); }
     }
   }
 </style>
-
-
 </head>
+
 <body>
 
   <!-- ✉️ Phong bì -->
@@ -194,7 +190,7 @@
     <div id="message" class="typed"></div>
   </div>
 
-  <!-- ❤️ Tim thật -->
+  <!-- ❤️ Tim -->
   <div class="heart-center">
     <svg viewBox="0 0 100 90">
       <defs>
@@ -204,8 +200,7 @@
           <stop offset="100%" stop-color="#c2185b" />
         </radialGradient>
       </defs>
-      <path d="M10,30 A20,20 0,0,1 50,30 A20,20 0,0,1 90,30 Q90,60 50,90 Q10,60 10,30 Z"
-        fill="url(#grad)" />
+      <path d="M10,30 A20,20 0,0,1 50,30 A20,20 0,0,1 90,30 Q90,60 50,90 Q10,60 10,30 Z" fill="url(#grad)" />
     </svg>
   </div>
 
@@ -221,15 +216,15 @@
 
     const text = `💐 Gửi em – cục dànggg của anhh 💐
 
-20/10 – anh không biết nói lời hoa mỹ, chỉ biết rằng, có em trong cuộc đời này là một điều thật đặc biệt.
+20/10 – anh không biết nói lời hoa mỹ, chỉ biết rằng, có em trong cuộc đời này là một điều thật đặc biệt.  
 Cảm ơn em, vì dù đôi khi anh chưa đủ khéo léo, chưa luôn ở bên đúng lúc, nhưng em vẫn là người khiến anh muốn cố gắng từng ngày.
 
-Anh biết, tình yêu không chỉ là những món quà hay lời nói ngọt ngào… mà là sự lắng nghe, thấu hiểu và cùng nhau đi qua cả những lúc mệt mỏi, hiểu lầm.
+Anh biết, tình yêu không chỉ là những món quà hay lời nói ngọt ngào… mà là sự lắng nghe, thấu hiểu và cùng nhau đi qua cả những lúc mệt mỏi, hiểu lầm.  
 Anh vẫn đang học cách yêu em đúng cách hơn – nhẹ nhàng hơn, trưởng thành hơn, và đủ ấm để em thấy an lòng.
 
 Ngày hôm nay, anh chỉ mong em cười nhiều một chút, thấy lòng mình yên hơn một chút, và biết rằng – có một người vẫn luôn nghĩ về em, lo cho em, dù chẳng nói ra nhiều.
 
-Chúc em luôn xinh đẹp, mạnh mẽ và hạnh phúc, không chỉ hôm nay mà là mọi ngày.
+Chúc em luôn xinh đẹp, mạnh mẽ và hạnh phúc, không chỉ hôm nay mà là mọi ngày.  
 Và nếu có thể, hãy để anh được là người làm em thấy an tâm hơn mỗi khi mệt mỏi.
 
 💌 Từ ông chãaa của em – người luôn muốn đồng hành, dõi theo và muốn chăm sóc bà chãaa`;
@@ -244,9 +239,7 @@ Và nếu có thể, hãy để anh được là người làm em thấy an tâm
 
     envelope.addEventListener("click", () => {
       envelope.classList.add("open");
-      setTimeout(() => {
-        envelope.classList.add("fade-out");
-      }, 1200);
+      setTimeout(() => envelope.classList.add("fade-out"), 1200);
       setTimeout(() => {
         envelope.style.display = "none";
         showLetter();
@@ -270,19 +263,17 @@ Và nếu có thể, hãy để anh được là người làm em thấy an tâm
     }
 
     function createOrbitImages() {
-  const isMobile = window.innerWidth <= 600;
-  imageUrls.forEach((url, index) => {
-    // Ẩn bớt 2 ảnh nếu là điện thoại để đỡ rối
-    if (isMobile && index > 2) return;
-    const img = document.createElement("img");
-    img.src = url;
-    img.classList.add("orbit-img");
-    img.style.animationDelay = `${index * 5}s`;
-    document.body.appendChild(img);
-    setTimeout(() => img.style.opacity = 1, 1500 * index);
-  });
-}
-
+      const isMobile = window.innerWidth <= 600;
+      imageUrls.forEach((url, index) => {
+        if (isMobile && index > 2) return;
+        const img = document.createElement("img");
+        img.src = url;
+        img.classList.add("orbit-img");
+        img.style.animationDelay = `${index * 5}s`;
+        document.body.appendChild(img);
+        setTimeout(() => img.style.opacity = 1, 1500 * index);
+      });
+    }
   </script>
 </body>
 </html>
