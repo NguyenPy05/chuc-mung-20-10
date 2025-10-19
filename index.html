@@ -263,12 +263,12 @@
   </audio>
 
   <script>
-    const envelope = document.getElementById("envelope");
-    const letter = document.getElementById("realLetter");
-    const message = document.getElementById("message");
-    const music = document.getElementById("bg-music");
+const envelope = document.getElementById("envelope");
+const letter = document.getElementById("realLetter");
+const message = document.getElementById("message");
+const music = document.getElementById("bg-music");
 
-    const text = `💐 Gửi em – cục dànggg của anhh 💐
+const text = `💐 Gửi em – cục dànggg của anhh 💐
 
 20/10 anh ở đây và chỉ muốn nói rằng có em trong cuộc đời này là một điều thật đặc biệt.
 Cảm ơn cục dàngg, vì dù đôi khi anh chưa đủ khéo léo, chưa luôn ở bên đúng lúc nhưng em vẫn là người khiến anh muốn cố gắng từng ngày.
@@ -282,108 +282,157 @@ Chúc em luôn xinh đẹp, mạnh mẽ và hạnh phúc, không chỉ hôm nay 
 Và hãy để anh và em được đồng hành cùng nhau mỗi khi vui, chia sẻ với nhau những khi buồn hay vấp ngã chúng ta vẫn sẽ mãi bên nhau cục dànggg nhé!  
 💌 Từ ông chãaa của em – người luôn muốn đồng hành, dõi theo và muốn chăm sóc bà chãaa 💌`;
 
-    const imageUrls = [
-      "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z7134417310872_3288378d0865045c48b5dd3a269ff51d.jpg",
-      "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z6985434562957_7dc129c6143f8e26c80d4b5efadde0f6.jpg",
-      "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z7134417330706_f29362b4f81b3acfd06a6ce2642dc125.jpg",
-      "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z7134417337460_c83d99b396f9b529d6e9c7ebef57e887.jpg",
-      "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z7134417340919_eeff56eebca69e118a921298c9d7b912.jpg",
-      "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z7134417340685_d372ed2e303f099c419226ed1cb7b8eb.jpg",
-      "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z7134417360342_fecf4702e373b8aeacadd034cae63d6f.jpg",
-      "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z7134417372236_0806a5445c30875b296ec04ee8818a83.jpg",
-      "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z7134417378667_5dc36bc5c8a1f7d37a4ec5cfa8ee9a66.jpg"
-    ];
+const imageUrls = [
+  "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z7134417310872_3288378d0865045c48b5dd3a269ff51d.jpg",
+  "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z6985434562957_7dc129c6143f8e26c80d4b5efadde0f6.jpg",
+  "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z7134417330706_f29362b4f81b3acfd06a6ce2642dc125.jpg",
+  "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z7134417337460_c83d99b396f9b529d6e9c7ebef57e887.jpg",
+  "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z7134417340919_eeff56eebca69e118a921298c9d7b912.jpg",
+  "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z7134417340685_d372ed2e303f099c419226ed1cb7b8eb.jpg",
+  "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z7134417360342_fecf4702e373b8aeacadd034cae63d6f.jpg",
+  "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z7134417372236_0806a5445c30875b296ec04ee8818a83.jpg",
+  "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z7134417378667_5dc36bc5c8a1f7d37a4ec5cfa8ee9a66.jpg"
+];
 
-    envelope.addEventListener("click", () => {
-      envelope.classList.add("open");
-      setTimeout(() => envelope.classList.add("fade-out"), 1200);
-      setTimeout(() => {
-        envelope.style.display = "none";
-        showLetter();
-      }, 2200);
-    });
+// Mỗi ảnh tương ứng một câu chúc
+const imageMessages = [
+  "💖 Cảm ơn em vì đã xuất hiện trong cuộc đời anh, làm mọi thứ trở nên dịu dàng hơn 💖",
+  "🌸 Chúc em luôn tươi như hoa, ngọt ngào như nụ cười của chính em 🌸",
+  "💫 Em là ánh sáng khiến mỗi ngày của anh đều rực rỡ 💫",
+  "💐 20/10 này, mong em được yêu thương nhiều gấp bội 💐",
+  "💕 Anh chẳng cần gì nhiều, chỉ cần em luôn hạnh phúc là đủ 💕",
+  "🌷 Dù có bao xa, trái tim anh vẫn luôn hướng về em 🌷",
+  "💞 Cảm ơn em vì đã cho anh biết thế nào là yêu thật lòng 💞",
+  "🌹 Em không chỉ xinh đẹp mà còn là điều tuyệt vời nhất với anh 🌹",
+  "💝 Chúc em một ngày 20/10 tràn đầy yêu thương — từ anh, người thương em 💝"
+];
 
-    function showLetter() {
-      letter.classList.add("show");
-      music.play();
-      let i = 0;
-      const speed = 40;
-      function typeWriter() {
-        if (i < text.length) {
-          message.innerHTML += text.charAt(i);
-          i++;
-          setTimeout(typeWriter, speed);
-        }
-      }
-      setTimeout(typeWriter, 1200);
-      createOrbitImages();
-      startFlowerFall();
-      createMiniHearts();
-    }
-
-    function createOrbitImages() {
-      const isMobile = window.innerWidth <= 600;
-      imageUrls.forEach((url, index) => {
-        if (isMobile && index > 2) return;
-        const img = document.createElement("img");
-        img.src = url;
-        img.classList.add("orbit-img");
-        img.style.animationDelay = `${index * 5}s`;
-        document.body.appendChild(img);
-        setTimeout(() => img.style.opacity = 1, 1200 * index);
-
-        img.addEventListener("click", (e) => {
-  if (!img.classList.contains("active")) {
-    img.classList.add("active");
-    createHeartBurst(e.pageX, e.pageY);
-    for (let j = 0; j < 10; j++) {
-      setTimeout(() => createHeartBurst(
-        e.pageX + (Math.random() * 60 - 30),
-        e.pageY + (Math.random() * 40 - 20)
-      ), j * 150);
-    }
-    setTimeout(() => img.classList.remove("active"), 1200);
-  }
+envelope.addEventListener("click", () => {
+  envelope.classList.add("open");
+  setTimeout(() => envelope.classList.add("fade-out"), 1200);
+  setTimeout(() => {
+    envelope.style.display = "none";
+    showLetter();
+  }, 2200);
 });
 
-      });
+function showLetter() {
+  letter.classList.add("show");
+  music.play();
+  let i = 0;
+  const speed = 40;
+  function typeWriter() {
+    if (i < text.length) {
+      message.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typeWriter, speed);
     }
+  }
+  setTimeout(typeWriter, 1200);
+  createOrbitImages();
+  startFlowerFall();
+  createMiniHearts();
+}
 
-    function createHeartBurst(x, y) {
-      const heart = document.createElement("div");
-      heart.className = "heart-burst";
-      heart.innerHTML = "❤️";
-      heart.style.left = `${x - 10}px`;
-      heart.style.top = `${y - 20}px`;
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 1200);
-    }
+function createOrbitImages() {
+  const isMobile = window.innerWidth <= 600;
+  imageUrls.forEach((url, index) => {
+    if (isMobile && index > 2) return;
+    const img = document.createElement("img");
+    img.src = url;
+    img.classList.add("orbit-img");
+    img.style.animationDelay = `${index * 5}s`;
+    document.body.appendChild(img);
+    setTimeout(() => img.style.opacity = 1, 1200 * index);
 
-    function startFlowerFall() {
-      setInterval(() => {
-        const flower = document.createElement("div");
-        flower.className = "flower";
-        flower.style.left = Math.random() * 100 + "vw";
-        flower.style.animationDuration = 5 + Math.random() * 5 + "s";
-        document.body.appendChild(flower);
-        setTimeout(() => flower.remove(), 10000);
-      }, 400);
-    }
-
-    function createMiniHearts() {
-      for (let i = 0; i < 10; i++) {
-        const h = document.createElement("div");
-        h.className = "mini-heart";
-        h.innerHTML = "💖";
-        h.style.left = 40 + Math.random() * 20 + "%";
-        h.style.top = 40 + Math.random() * 20 + "%";
-        h.style.animationDelay = i * 0.5 + "s";
-        document.body.appendChild(h);
+    img.addEventListener("click", (e) => {
+      if (!img.classList.contains("active")) {
+        img.classList.add("active");
+        createHeartBurst(e.pageX, e.pageY);
+        showPopupMessage(imageMessages[index], e.pageX, e.pageY);
+        for (let j = 0; j < 10; j++) {
+          setTimeout(() => createHeartBurst(
+            e.pageX + (Math.random() * 60 - 30),
+            e.pageY + (Math.random() * 40 - 20)
+          ), j * 150);
+        }
+        setTimeout(() => img.classList.remove("active"), 1200);
       }
-    }
-  </script>
+    });
+  });
+}
+
+function createHeartBurst(x, y) {
+  const heart = document.createElement("div");
+  heart.className = "heart-burst";
+  heart.innerHTML = "❤️";
+  heart.style.left = `${x - 10}px`;
+  heart.style.top = `${y - 20}px`;
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 1200);
+}
+
+// Popup lời chúc khi click ảnh
+function showPopupMessage(text, x, y) {
+  const popup = document.createElement("div");
+  popup.textContent = text;
+  popup.style.position = "absolute";
+  popup.style.left = x + "px";
+  popup.style.top = y - 80 + "px";
+  popup.style.background = "rgba(255, 240, 245, 0.95)";
+  popup.style.border = "2px solid #ffb6c1";
+  popup.style.borderRadius = "12px";
+  popup.style.padding = "10px 15px";
+  popup.style.color = "#7a3a52";
+  popup.style.fontSize = "15px";
+  popup.style.fontWeight = "500";
+  popup.style.boxShadow = "0 5px 20px rgba(255,182,193,0.4)";
+  popup.style.transition = "opacity 1s, transform 1s";
+  popup.style.zIndex = 9999;
+  popup.style.maxWidth = "200px";
+  popup.style.textAlign = "center";
+  popup.style.opacity = "0";
+  document.body.appendChild(popup);
+
+  setTimeout(() => {
+    popup.style.opacity = "1";
+    popup.style.transform = "translateY(-20px)";
+  }, 50);
+
+  setTimeout(() => {
+    popup.style.opacity = "0";
+    popup.style.transform = "translateY(-60px)";
+  }, 3000);
+
+  setTimeout(() => popup.remove(), 4000);
+}
+
+function startFlowerFall() {
+  setInterval(() => {
+    const flower = document.createElement("div");
+    flower.className = "flower";
+    flower.style.left = Math.random() * 100 + "vw";
+    flower.style.animationDuration = 5 + Math.random() * 5 + "s";
+    document.body.appendChild(flower);
+    setTimeout(() => flower.remove(), 10000);
+  }, 400);
+}
+
+function createMiniHearts() {
+  for (let i = 0; i < 10; i++) {
+    const h = document.createElement("div");
+    h.className = "mini-heart";
+    h.innerHTML = "💖";
+    h.style.left = 40 + Math.random() * 20 + "%";
+    h.style.top = 40 + Math.random() * 20 + "%";
+    h.style.animationDelay = i * 0.5 + "s";
+    document.body.appendChild(h);
+  }
+}
+</script>
 </body>
 </html>
+
 
 
 
