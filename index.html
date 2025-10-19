@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>💌 Gửi Em Ngày 20/10 💖</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;600&display=swap');
+
   * {
     margin: 0;
     padding: 0;
@@ -18,13 +20,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Georgia', serif;
+    font-family: 'Quicksand', sans-serif;
     position: relative;
-    transition: filter 1.5s ease;
-  }
-
-  body.blurred {
-    filter: blur(5px);
   }
 
   /* ✉️ Phong bì */
@@ -38,14 +35,9 @@
     box-shadow: 0 10px 30px rgba(255, 182, 193, 0.5);
     cursor: pointer;
     perspective: 800px;
-    transition: transform 0.8s ease-in-out;
-    z-index: 10;
+    transition: transform 0.8s ease-in-out, opacity 1s ease;
     background-image: linear-gradient(145deg, #fff, #ffe6eb);
-  }
-
-  .envelope:hover {
-    transform: scale(1.05);
-    box-shadow: 0 15px 40px rgba(255, 182, 193, 0.7);
+    z-index: 10;
   }
 
   .flap {
@@ -67,32 +59,29 @@
 
   .envelope.fade-out {
     opacity: 0;
-    transform: scale(0.7);
-    transition: all 1s ease-in-out;
+    transform: scale(0.8);
   }
 
-  /* 💌 Lá thư tay */
+  /* 💌 Lá thư */
   .real-letter {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 320px;
+    width: 340px;
     max-width: 90vw;
-    height: 400px;
+    height: 420px;
     max-height: 80vh;
-    background: #fffdf7;
+    background: #fffdf8;
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(255,182,193,0.4);
     transform: translate(-50%, -50%) scale(0.8);
     opacity: 0;
     transition: all 1.2s ease;
-    padding: 25px;
-    line-height: 1.6em;
+    padding: 30px;
+    line-height: 1.7em;
     color: #663046;
     background-image: linear-gradient(180deg, #fffdf7 0%, #fff8f2 100%);
-    font-family: 'Dancing Script', cursive;
-    background-size: 100% 200%;
-    background-repeat: no-repeat;
+    font-family: 'Great Vibes', cursive;
     z-index: 20;
     overflow-y: auto;
   }
@@ -104,17 +93,17 @@
   }
 
   @keyframes paperRise {
-    from { transform: translate(-50%, -30%) scale(0.8); opacity: 0; }
+    from { transform: translate(-50%, -40%) scale(0.7); opacity: 0; }
     to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
   }
 
   .typed {
-    font-size: 18px;
-    color: #884d63;
+    font-size: 22px;
+    color: #8a4660;
     white-space: pre-line;
     border-right: 2px solid #ff99b9;
     overflow: hidden;
-    animation: typing 7s steps(80) 1s 1 normal both, blink 0.8s step-end infinite alternate;
+    animation: typing 7s steps(90) 1s 1 normal both, blink 0.8s step-end infinite alternate;
   }
 
   @keyframes typing {
@@ -127,14 +116,14 @@
     50% { border-color: #ff99b9; }
   }
 
-  /* 💗 Tim trung tâm (thật hơn) */
+  /* ❤️ Tim trung tâm */
   .heart-center {
     position: absolute;
     top: 65%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 120px;
-    height: 110px;
+    width: 130px;
+    height: 120px;
     z-index: 0;
     animation: realBeat 1.8s infinite ease-in-out;
   }
@@ -146,11 +135,10 @@
   }
 
   @keyframes realBeat {
-    0% { transform: translate(-50%, -50%) scale(1); }
-    25% { transform: translate(-50%, -50%) scale(1.2); }
+    0%,100% { transform: translate(-50%, -50%) scale(1); }
+    25% { transform: translate(-50%, -50%) scale(1.25); }
     50% { transform: translate(-50%, -50%) scale(1); }
     75% { transform: translate(-50%, -50%) scale(1.15); }
-    100% { transform: translate(-50%, -50%) scale(1); }
   }
 
   /* 🌸 Ảnh repo xoay quanh */
@@ -161,9 +149,9 @@
     border-radius: 15px;
     object-fit: cover;
     opacity: 0;
-    animation: orbit 40s linear infinite;
+    animation: orbit 45s linear infinite;
     box-shadow: 0 0 20px rgba(255,182,193,0.4);
-    transition: opacity 2s;
+    transition: opacity 3s;
   }
 
   @keyframes orbit {
@@ -171,104 +159,17 @@
     to { transform: rotate(360deg) translateX(280px) rotate(-360deg); }
   }
 
-  /* ❄️ Hiệu ứng tuyết */
-  .snowflakes {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 5;
-  }
-
-  .snowflake {
-    position: absolute;
-    top: -10px;
-    color: #fff;
-    font-size: 1.5em;
-    opacity: 0.8;
-    animation: fall linear forwards;
-  }
-
-  @keyframes fall {
-    to {
-      transform: translateY(100vh) rotate(360deg);
-      opacity: 0;
-    }
-  }
-
-  /* 🌹 Hoa hồng xung quanh */
-  .roses {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
-  }
-
+  /* 🌹 Hoa hồng */
   .rose {
     position: absolute;
-    width: 40px;
-    height: 40px;
+    font-size: 1.8em;
     opacity: 0.7;
-    animation: float 8s infinite ease-in-out;
+    animation: float 6s infinite ease-in-out;
   }
-
-  .rose:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
-  .rose:nth-child(2) { top: 20%; right: 15%; animation-delay: 1s; }
-  .rose:nth-child(3) { bottom: 30%; left: 5%; animation-delay: 2s; }
-  .rose:nth-child(4) { bottom: 10%; right: 20%; animation-delay: 3s; }
-  .rose:nth-child(5) { top: 40%; left: 20%; animation-delay: 4s; }
-  .rose:nth-child(6) { top: 15%; right: 5%; animation-delay: 5s; }
 
   @keyframes float {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
+    0%,100% { transform: translateY(0) rotate(0deg); }
     50% { transform: translateY(-20px) rotate(10deg); }
-  }
-
-  /* ✨ Hiệu ứng ánh sáng */
-  .light-effect {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 70%);
-    animation: pulseLight 4s infinite alternate;
-    pointer-events: none;
-    z-index: 2;
-  }
-
-  @keyframes pulseLight {
-    from { opacity: 0.3; }
-    to { opacity: 0.7; }
-  }
-
-  /* 📱 Responsive */
-  @media (max-width: 768px) {
-    .envelope {
-      width: 240px;
-      height: 150px;
-    }
-    
-    .real-letter {
-      width: 280px;
-      height: 360px;
-      padding: 20px;
-    }
-    
-    .typed {
-      font-size: 16px;
-    }
-    
-    .heart-center {
-      width: 100px;
-      height: 90px;
-    }
-    
-    .orbit-img {
-      width: 70px;
-      height: 70px;
-    }
   }
 
   audio { display: none; }
@@ -276,30 +177,19 @@
 </head>
 <body>
 
-  <!-- ✨ Hiệu ứng ánh sáng -->
-  <div class="light-effect"></div>
-  
-  <!-- 🌹 Hoa hồng xung quanh -->
-  <div class="roses">
-    <div class="rose">🌹</div>
-    <div class="rose">🌹</div>
-    <div class="rose">🌹</div>
-    <div class="rose">🌹</div>
-    <div class="rose">🌹</div>
-    <div class="rose">🌹</div>
-  </div>
+  <div class="rose" style="top:10%;left:15%;">🌹</div>
+  <div class="rose" style="top:20%;right:10%;">🌹</div>
+  <div class="rose" style="bottom:25%;left:8%;">🌹</div>
+  <div class="rose" style="bottom:10%;right:15%;">🌹</div>
 
-  <!-- ✉️ Phong bì -->
   <div class="envelope" id="envelope">
     <div class="flap"></div>
   </div>
 
-  <!-- 💌 Lá thư -->
   <div class="real-letter" id="realLetter">
     <div id="message" class="typed"></div>
   </div>
 
-  <!-- ❤️ Tim thật -->
   <div class="heart-center">
     <svg viewBox="0 0 100 90">
       <defs>
@@ -314,9 +204,6 @@
     </svg>
   </div>
 
-  <!-- ❄️ Tuyết -->
-  <div class="snowflakes" id="snowflakes"></div>
-
   <audio id="bg-music" loop>
     <source src="https://cdn.pixabay.com/download/audio/2023/03/02/audio_bf7fdd82b1.mp3?filename=romantic-piano-145990.mp3" type="audio/mpeg">
   </audio>
@@ -326,15 +213,15 @@
     const letter = document.getElementById("realLetter");
     const message = document.getElementById("message");
     const music = document.getElementById("bg-music");
-    const snowflakesContainer = document.getElementById("snowflakes");
-    const body = document.body;
 
     const text = `💐 Gửi em nhân ngày 20/10 💖
 
 Chúc em luôn xinh đẹp, dịu dàng và hạnh phúc.
 Cảm ơn em vì đã mang đến những điều ngọt ngào và ấm áp.
 
-Mong em sẽ luôn mỉm cười thật nhiều nhé 🌸
+Anh mong mỗi ngày của em đều ngập tràn tiếng cười,
+và trái tim em luôn được yêu thương như hôm nay. 🌸
+
 💌 – Từ người luôn nghĩ về em –`;
 
     const imageUrls = [
@@ -345,29 +232,9 @@ Mong em sẽ luôn mỉm cười thật nhiều nhé 🌸
       "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z7134417340919_eeff56eebca69e118a921298c9d7b912.jpg"
     ];
 
-    // Tạo hiệu ứng tuyết
-    function createSnowflakes() {
-      const snowflakeCount = 50;
-      for (let i = 0; i < snowflakeCount; i++) {
-        const snowflake = document.createElement('div');
-        snowflake.classList.add('snowflake');
-        snowflake.innerHTML = '❄';
-        snowflake.style.left = `${Math.random() * 100}%`;
-        snowflake.style.animationDuration = `${Math.random() * 5 + 5}s`;
-        snowflake.style.animationDelay = `${Math.random() * 5}s`;
-        snowflake.style.fontSize = `${Math.random() * 10 + 10}px`;
-        snowflakesContainer.appendChild(snowflake);
-      }
-    }
-
     envelope.addEventListener("click", () => {
       envelope.classList.add("open");
-      body.classList.add("blurred");
-      
-      setTimeout(() => {
-        envelope.classList.add("fade-out");
-      }, 1200);
-      
+      setTimeout(() => envelope.classList.add("fade-out"), 1200);
       setTimeout(() => {
         envelope.style.display = "none";
         showLetter();
@@ -377,20 +244,21 @@ Mong em sẽ luôn mỉm cười thật nhiều nhé 🌸
     function showLetter() {
       letter.classList.add("show");
       music.play();
-      
+      typeWriter();
+      createOrbitImages();
+    }
+
+    function typeWriter() {
       let i = 0;
       const speed = 40;
-      
-      function typeWriter() {
+      function typing() {
         if (i < text.length) {
           message.innerHTML += text.charAt(i);
           i++;
-          setTimeout(typeWriter, speed);
+          setTimeout(typing, speed);
         }
       }
-      
-      setTimeout(typeWriter, 1200);
-      createOrbitImages();
+      setTimeout(typing, 800);
     }
 
     function createOrbitImages() {
@@ -400,12 +268,9 @@ Mong em sẽ luôn mỉm cười thật nhiều nhé 🌸
         img.classList.add("orbit-img");
         img.style.animationDelay = `${index * 5}s`;
         document.body.appendChild(img);
-        setTimeout(() => img.style.opacity = 1, 1500 * index);
+        setTimeout(() => img.style.opacity = 1, 1000 * index);
       });
     }
-
-    // Khởi tạo hiệu ứng tuyết khi trang tải
-    window.addEventListener('load', createSnowflakes);
   </script>
 </body>
 </html>
