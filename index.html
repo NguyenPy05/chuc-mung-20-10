@@ -5,8 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>💌 Gửi Em Ngày 20/10 💖</title>
 <style>
-  body {
+  * {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
     height: 100vh;
     background: radial-gradient(circle at top, #fff6fa, #ffdce3, #ffeef2);
     overflow: hidden;
@@ -15,6 +20,11 @@
     align-items: center;
     font-family: 'Georgia', serif;
     position: relative;
+    transition: filter 1.5s ease;
+  }
+
+  body.blurred {
+    filter: blur(5px);
   }
 
   /* ✉️ Phong bì */
@@ -33,6 +43,11 @@
     background-image: linear-gradient(145deg, #fff, #ffe6eb);
   }
 
+  .envelope:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(255, 182, 193, 0.7);
+  }
+
   .flap {
     position: absolute;
     width: 100%;
@@ -43,6 +58,7 @@
     clip-path: polygon(0 0, 50% 100%, 100% 0);
     transform-origin: top;
     transition: transform 1.2s ease;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
   }
 
   .envelope.open .flap {
@@ -61,7 +77,9 @@
     top: 50%;
     left: 50%;
     width: 320px;
+    max-width: 90vw;
     height: 400px;
+    max-height: 80vh;
     background: #fffdf7;
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(255,182,193,0.4);
@@ -75,6 +93,8 @@
     font-family: 'Dancing Script', cursive;
     background-size: 100% 200%;
     background-repeat: no-repeat;
+    z-index: 20;
+    overflow-y: auto;
   }
 
   .real-letter.show {
@@ -151,10 +171,123 @@
     to { transform: rotate(360deg) translateX(280px) rotate(-360deg); }
   }
 
+  /* ❄️ Hiệu ứng tuyết */
+  .snowflakes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  .snowflake {
+    position: absolute;
+    top: -10px;
+    color: #fff;
+    font-size: 1.5em;
+    opacity: 0.8;
+    animation: fall linear forwards;
+  }
+
+  @keyframes fall {
+    to {
+      transform: translateY(100vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  /* 🌹 Hoa hồng xung quanh */
+  .roses {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .rose {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    opacity: 0.7;
+    animation: float 8s infinite ease-in-out;
+  }
+
+  .rose:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+  .rose:nth-child(2) { top: 20%; right: 15%; animation-delay: 1s; }
+  .rose:nth-child(3) { bottom: 30%; left: 5%; animation-delay: 2s; }
+  .rose:nth-child(4) { bottom: 10%; right: 20%; animation-delay: 3s; }
+  .rose:nth-child(5) { top: 40%; left: 20%; animation-delay: 4s; }
+  .rose:nth-child(6) { top: 15%; right: 5%; animation-delay: 5s; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(10deg); }
+  }
+
+  /* ✨ Hiệu ứng ánh sáng */
+  .light-effect {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 70%);
+    animation: pulseLight 4s infinite alternate;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  @keyframes pulseLight {
+    from { opacity: 0.3; }
+    to { opacity: 0.7; }
+  }
+
+  /* 📱 Responsive */
+  @media (max-width: 768px) {
+    .envelope {
+      width: 240px;
+      height: 150px;
+    }
+    
+    .real-letter {
+      width: 280px;
+      height: 360px;
+      padding: 20px;
+    }
+    
+    .typed {
+      font-size: 16px;
+    }
+    
+    .heart-center {
+      width: 100px;
+      height: 90px;
+    }
+    
+    .orbit-img {
+      width: 70px;
+      height: 70px;
+    }
+  }
+
   audio { display: none; }
 </style>
 </head>
 <body>
+
+  <!-- ✨ Hiệu ứng ánh sáng -->
+  <div class="light-effect"></div>
+  
+  <!-- 🌹 Hoa hồng xung quanh -->
+  <div class="roses">
+    <div class="rose">🌹</div>
+    <div class="rose">🌹</div>
+    <div class="rose">🌹</div>
+    <div class="rose">🌹</div>
+    <div class="rose">🌹</div>
+    <div class="rose">🌹</div>
+  </div>
 
   <!-- ✉️ Phong bì -->
   <div class="envelope" id="envelope">
@@ -181,7 +314,10 @@
     </svg>
   </div>
 
-  <audio id="bg-music">
+  <!-- ❄️ Tuyết -->
+  <div class="snowflakes" id="snowflakes"></div>
+
+  <audio id="bg-music" loop>
     <source src="https://cdn.pixabay.com/download/audio/2023/03/02/audio_bf7fdd82b1.mp3?filename=romantic-piano-145990.mp3" type="audio/mpeg">
   </audio>
 
@@ -190,6 +326,8 @@
     const letter = document.getElementById("realLetter");
     const message = document.getElementById("message");
     const music = document.getElementById("bg-music");
+    const snowflakesContainer = document.getElementById("snowflakes");
+    const body = document.body;
 
     const text = `💐 Gửi em nhân ngày 20/10 💖
 
@@ -207,11 +345,29 @@ Mong em sẽ luôn mỉm cười thật nhiều nhé 🌸
       "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z7134417340919_eeff56eebca69e118a921298c9d7b912.jpg"
     ];
 
+    // Tạo hiệu ứng tuyết
+    function createSnowflakes() {
+      const snowflakeCount = 50;
+      for (let i = 0; i < snowflakeCount; i++) {
+        const snowflake = document.createElement('div');
+        snowflake.classList.add('snowflake');
+        snowflake.innerHTML = '❄';
+        snowflake.style.left = `${Math.random() * 100}%`;
+        snowflake.style.animationDuration = `${Math.random() * 5 + 5}s`;
+        snowflake.style.animationDelay = `${Math.random() * 5}s`;
+        snowflake.style.fontSize = `${Math.random() * 10 + 10}px`;
+        snowflakesContainer.appendChild(snowflake);
+      }
+    }
+
     envelope.addEventListener("click", () => {
       envelope.classList.add("open");
+      body.classList.add("blurred");
+      
       setTimeout(() => {
         envelope.classList.add("fade-out");
       }, 1200);
+      
       setTimeout(() => {
         envelope.style.display = "none";
         showLetter();
@@ -221,8 +377,10 @@ Mong em sẽ luôn mỉm cười thật nhiều nhé 🌸
     function showLetter() {
       letter.classList.add("show");
       music.play();
+      
       let i = 0;
       const speed = 40;
+      
       function typeWriter() {
         if (i < text.length) {
           message.innerHTML += text.charAt(i);
@@ -230,6 +388,7 @@ Mong em sẽ luôn mỉm cười thật nhiều nhé 🌸
           setTimeout(typeWriter, speed);
         }
       }
+      
       setTimeout(typeWriter, 1200);
       createOrbitImages();
     }
@@ -244,6 +403,9 @@ Mong em sẽ luôn mỉm cười thật nhiều nhé 🌸
         setTimeout(() => img.style.opacity = 1, 1500 * index);
       });
     }
+
+    // Khởi tạo hiệu ứng tuyết khi trang tải
+    window.addEventListener('load', createSnowflakes);
   </script>
 </body>
 </html>
