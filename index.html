@@ -3,136 +3,168 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>💖 Chúc mừng ngày 20/10 💖</title>
+  <title>💌 Thư chúc mừng 20/10 💖</title>
   <style>
-    /* 🌸 Nền lung linh trong suốt */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      margin: 0;
       height: 100vh;
-      background: radial-gradient(circle at top left, rgba(255,182,193,0.5), rgba(255,240,245,0.6)),
-                  radial-gradient(circle at bottom right, rgba(255,192,203,0.5), rgba(255,228,225,0.5));
-      background-size: 200% 200%;
-      animation: bgMove 10s ease-in-out infinite;
+      background: radial-gradient(circle at top left, rgba(255,192,203,0.5), rgba(255,240,245,0.4), rgba(255,255,255,0.2));
+      backdrop-filter: blur(10px);
       overflow: hidden;
       font-family: 'Segoe UI', sans-serif;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .envelope {
+      width: 200px;
+      height: 130px;
+      background: linear-gradient(145deg, #ffb6c1, #ff69b4);
+      position: relative;
+      cursor: pointer;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(255, 105, 180, 0.5);
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+    }
+    .envelope:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(255, 182, 193, 0.8);
+    }
+
+    .envelope::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200px;
+      height: 65px;
+      background: linear-gradient(135deg, #ff99cc, #ff66b2);
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      border-radius: 10px 10px 0 0;
+      transition: transform 0.7s ease;
+      transform-origin: top;
+    }
+
+    .opened::before {
+      transform: rotateX(180deg);
+    }
+
+    .message-card {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      padding: 30px;
+      width: 85%;
+      max-width: 600px;
       text-align: center;
-      color: white;
-      position: relative;
+      box-shadow: 0 0 30px rgba(255, 192, 203, 0.8);
+      backdrop-filter: blur(15px);
+      opacity: 0;
+      transition: all 1s ease;
     }
 
-    @keyframes bgMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    .message-card.show {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
     }
 
-    /* ✨ Hiệu ứng tiêu đề */
     h1 {
-      margin-top: 60px;
-      font-size: 3em;
-      text-shadow: 0 0 25px #fff, 0 0 40px #ff66b2, 0 0 60px #ff99cc;
-      animation: glow 3s ease-in-out infinite alternate;
+      font-size: 2.5em;
+      text-shadow: 0 0 20px #ff99cc;
+      margin-bottom: 20px;
+      animation: glow 2s infinite alternate;
     }
-
     @keyframes glow {
-      from { text-shadow: 0 0 15px #ff99cc, 0 0 30px #ff66b2; }
-      to { text-shadow: 0 0 40px #ff3385, 0 0 70px #ff99cc; }
+      from { text-shadow: 0 0 10px #ff99cc; }
+      to { text-shadow: 0 0 30px #ff66b2; }
     }
 
-    /* 🌷 Lời chúc nổi bật */
     p {
-      font-size: 1.4em;
-      width: 80%;
-      max-width: 700px;
-      margin: 25px auto;
+      font-size: 1.2em;
+      line-height: 1.6em;
       color: #fff5f8;
-      text-shadow: 0 0 15px rgba(255, 182, 193, 0.8);
-      animation: fadeIn 3s ease-in-out;
-      line-height: 1.8em;
-      z-index: 10;
-      position: relative;
+      text-shadow: 0 0 10px #ffb6c1;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* 💞 Trái tim đập có ánh sáng */
     .center-heart {
       position: absolute;
       left: 50%;
-      top: 72%;
-      transform: translate(-50%, -50%);
+      top: 75%;
+      transform: translate(-50%, -50%) scale(0);
       width: 110px;
       height: 100px;
-      background: radial-gradient(circle, #ff5c8d 20%, #ff1a75 80%);
+      background: #ff4d88;
       clip-path: path("M10,30 A20,20 0,0,1 50,30 A20,20 0,0,1 90,30 Q90,60 50,90 Q10,60 10,30 Z");
-      animation: heartbeat 1.4s infinite ease-in-out;
-      box-shadow: 0 0 30px #ff6fa5, 0 0 60px #ff99cc;
-      filter: drop-shadow(0 0 20px rgba(255, 182, 193, 0.8));
+      box-shadow: 0 0 25px #ff99c8;
+      animation: heartbeat 1.5s infinite ease-in-out;
+      transition: transform 1s ease;
+      z-index: 1;
+    }
+
+    .show-heart {
+      transform: translate(-50%, -50%) scale(1);
     }
 
     @keyframes heartbeat {
-      0% { transform: translate(-50%, -50%) scale(1); opacity: 0.9; }
-      25% { transform: translate(-50%, -50%) scale(1.25); opacity: 1; }
-      50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.95; }
-      75% { transform: translate(-50%, -50%) scale(1.3); opacity: 1; }
-      100% { transform: translate(-50%, -50%) scale(1); opacity: 0.9; }
+      0%, 100% { transform: translate(-50%, -50%) scale(1); }
+      25%, 75% { transform: translate(-50%, -50%) scale(1.25); }
+      50% { transform: translate(-50%, -50%) scale(1); }
     }
 
-    /* 💖 Trái tim nhỏ bay */
+    .floating-img {
+      position: absolute;
+      width: 90px;
+      height: 90px;
+      border-radius: 20px;
+      object-fit: cover;
+      animation: float 6s infinite ease-in-out;
+      box-shadow: 0 0 15px rgba(255, 182, 193, 0.8);
+      opacity: 0.9;
+      z-index: 0;
+    }
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
+      50% { transform: translateY(-50px) rotate(10deg) scale(1.1); opacity: 0.9; }
+      100% { transform: translateY(0) rotate(-10deg) scale(1); opacity: 1; }
+    }
+
     .heart {
       position: absolute;
       color: #ff6fa5;
       font-size: 20px;
-      animation: floatUp 5s ease-in-out forwards;
+      animation: floatUp 4s ease-in-out forwards;
       opacity: 0.8;
       text-shadow: 0 0 10px #fff;
-      z-index: 1;
-    }
-
-    @keyframes floatUp {
-      0% { transform: translateY(0) scale(1); opacity: 1; }
-      50% { transform: translateY(-80px) scale(1.3); opacity: 0.9; }
-      100% { transform: translateY(-250px) scale(0.8); opacity: 0; }
-    }
-
-    /* 🌸 Ảnh bay (không đè chữ) */
-    .floating-img {
-      position: absolute;
-      width: 80px;
-      height: 80px;
-      border-radius: 15px;
-      object-fit: cover;
-      animation: float 6s infinite ease-in-out;
-      box-shadow: 0 0 15px rgba(255, 182, 193, 0.9);
-      opacity: 0.9;
       z-index: 0;
     }
-
-    @keyframes float {
-      0% { transform: translateY(0) rotate(0deg) scale(1); }
-      50% { transform: translateY(-60px) rotate(10deg) scale(1.1); }
-      100% { transform: translateY(0) rotate(-10deg) scale(1); }
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-250px) scale(0.8); opacity: 0; }
     }
 
     audio { display: none; }
   </style>
 </head>
 <body>
-  <h1>💐 Chúc mừng ngày 20/10 💖</h1>
-  <p>
-    Chúc em luôn xinh đẹp, rạng rỡ và hạnh phúc như những bông hoa mùa xuân 🌸<br>
+
+  <div class="envelope" id="envelope"></div>
+
+  <div class="message-card" id="card">
+    <h1>💐 Chúc mừng ngày 20/10 💖</h1>
+    <p>Chúc em luôn xinh đẹp, rạng rỡ và hạnh phúc như những bông hoa mùa xuân 🌸<br>
     Cảm ơn em vì đã khiến thế giới này trở nên ngọt ngào hơn 💕<br>
-    Mong rằng hôm nay và mỗi ngày sau này,<br>
-    nụ cười của em sẽ luôn nở rộ như hoa hồng buổi sớm 🌹
-  </p>
+    Mong rằng hôm nay và mỗi ngày sau này, nụ cười của em sẽ luôn nở rộ như hoa hồng buổi sớm 🌹</p>
+  </div>
 
-  <div class="center-heart"></div>
+  <div class="center-heart" id="heart"></div>
 
-  <!-- 🌹 Nhạc nền -->
-  <audio id="bg-music" autoplay loop>
+  <audio id="bg-music" loop>
     <source src="https://cdn.pixabay.com/download/audio/2023/03/02/audio_bf7fdd82b1.mp3?filename=romantic-piano-145990.mp3" type="audio/mpeg">
   </audio>
 
@@ -142,18 +174,22 @@
       "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z6985434562957_7dc129c6143f8e26c80d4b5efadde0f6.jpg",
       "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z7134417330706_f29362b4f81b3acfd06a6ce2642dc125.jpg",
       "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z7134417337460_c83d99b396f9b529d6e9c7ebef57e887.jpg",
-      "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z7134417340685_d372ed2e303f099c419226ed1cb7b8eb.jpg"
+      "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z7134417340685_d372ed2e303f099c419226ed1cb7b8eb.jpg",
+      "https://raw.githubusercontent.com/NguyenPy05/chuc-mung-20-10/main/z7134417358437_b9845d8873f6259aba29ec058b771d17.jpg"
     ];
+
+    const envelope = document.getElementById("envelope");
+    const card = document.getElementById("card");
+    const heart = document.getElementById("heart");
+    const music = document.getElementById("bg-music");
 
     function createFloatingImage() {
       const img = document.createElement("img");
       img.src = imageUrls[Math.floor(Math.random() * imageUrls.length)];
       img.classList.add("floating-img");
-      const top = Math.random() * 70 + 25; // tránh khu vực chữ
-      const left = Math.random() * 90;
-      img.style.top = top + "%";
-      img.style.left = left + "%";
-      img.style.animationDuration = (4 + Math.random() * 3) + "s";
+      img.style.top = Math.random() * 80 + "%";
+      img.style.left = Math.random() * 90 + "%";
+      img.style.animationDuration = (4 + Math.random() * 4) + "s";
       document.body.appendChild(img);
       setTimeout(() => img.remove(), 7000);
     }
@@ -166,16 +202,18 @@
       heart.style.bottom = "0px";
       heart.style.fontSize = Math.random() * 20 + 15 + "px";
       document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 5000);
+      setTimeout(() => heart.remove(), 4000);
     }
 
-    setInterval(createFloatingImage, 1200);
-    setInterval(createHeart, 300);
-
-    // Bật nhạc khi người dùng chạm màn hình
-    document.addEventListener("click", () => {
-      const music = document.getElementById("bg-music");
-      music.play();
+    envelope.addEventListener("click", () => {
+      envelope.classList.add("opened");
+      setTimeout(() => {
+        card.classList.add("show");
+        heart.classList.add("show-heart");
+        music.play();
+        setInterval(createFloatingImage, 1500);
+        setInterval(createHeart, 400);
+      }, 800);
     });
   </script>
 </body>
